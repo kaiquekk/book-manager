@@ -1,0 +1,56 @@
+<div class='container'>
+    <div class='card'>
+        <div class='card-header'>
+            <h2>Book Details</h2>
+        </div>
+        <div class='card-body -book' *ngIf='book'>
+            <div class='book-img'>
+                <img [src]='book["image"]' />
+            </div>
+            <div class='book-info'>
+                <table class='table'>
+                    <tr class='table-row'>
+                        <th class='table-header'>ISBN13:</th>
+                        <td class='table-item'>{{ book['isbn13'] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>Title:</th>
+                        <td class='table-item'>{{ book['title'] }}</td>
+                    </tr>
+                    <tr class='table-row' *ngIf='book["subtitle"]'>
+                        <th class='table-header'>Subtitle:</th>
+                        <td class='table-item'>{{ book['subtitle'] }}</td>
+                    </tr>                    
+                    <tr class='table-row'>
+                        <th class='table-header'>Authors:</th>
+                        <td class='table-item'>{{ book['authors'] }}</td>
+                    </tr>                    
+                    <tr class='table-row'>
+                        <th class='table-header'>Publisher:</th>
+                        <td class='table-item'>{{ book['publisher'] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>Language:</th>
+                        <td class='table-item'>{{ book['language'] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>Year:</th>
+                        <td class='table-item'>{{ book['year'] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>Pages:</th>
+                        <td class='table-item'>{{ book['pages'] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>Description:</th>
+                        <td class='table-item'>{{ book['desc'] }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class='card-footer'>
+            <button class='btn' *ngIf='isLogged()' (click)='addToList()'>Add to My List</button>
+            <button class='btn' (click)='onBack()'>Return</button>
+        </div>
+    </div>
+</div>

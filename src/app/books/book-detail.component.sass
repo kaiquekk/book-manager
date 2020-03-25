@@ -1,0 +1,21 @@
+@import "../../styles.sass"
+
+.card-body, .-book
+    display: flex
+    flex-direction: row
+    > .book-img
+        align-self: center
+        border: .1em solid black
+        border-right: none
+        background-color: #ffffff
+
+.table
+    border-collapse: collapse
+    margin: 1em 0 1em 0
+.table-row
+    > .table-item, .table-header
+        padding: 1em
+        text-align: center        
+        border: .1em solid black
+    > .table-header
+        background-color: $main-color2

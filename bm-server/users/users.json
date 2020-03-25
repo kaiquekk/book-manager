@@ -1,0 +1,16 @@
+[
+ {
+  "userId": 311982623,
+  "username": "user1",
+  "password": "42df315912e535f8d6211beb38c90682a990d25c968182e1b6f4f7cbd03e61f2",
+  "firstName": "User",
+  "lastName": "One"
+ },
+ {
+  "userId": 311982624,
+  "username": "user2",
+  "password": "42df315912e535f8d6211beb38c90682a990d25c968182e1b6f4f7cbd03e61f2",
+  "firstName": "User",
+  "lastName": "Two"
+ }
+]

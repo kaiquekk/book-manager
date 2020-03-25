@@ -1,0 +1,37 @@
+<div class='container'>
+    <div class='card'>
+        <div class='card-header'>
+            <a class='label'>Filter Books (by author, title or keyword):</a>
+            <input class='input' [(ngModel)]='searchKey' type='text' placeholder='Filter'/>   
+            <span class='focus-input'></span>              
+            <button class='btn' (click)='searchBooks()'>Search</button>      
+        </div>
+        <div class='card-body' *ngIf='showFilter'>
+            <table class='table'>
+                <thead>
+                    <tr class='table-row'>
+                        <th class='table-header -empty'></th>
+                        <th class='table-header'>ISBN</th>
+                        <th class='table-header'>Title</th>
+                        <th class='table-header'>Subtitle</th>
+                        <th class='table-header -empty'></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='table-row' *ngFor='let book of books'>
+                        <td class='table-item -image'><img class='cover' [src]='book.image'></td>
+                        <td class='table-item'>
+                            <a [routerLink]="['/books', book.isbn13]">{{ book.isbn13 }}</a>
+                        </td>
+                        <td class='table-item'>{{ book.title }}</td>
+                        <td class='table-item'>{{ book.subtitle }}</td>
+                        <td class='table-item -button'>
+                            <button class='btn' *ngIf='isLogged()' (click)='addBook()'>Add to List</button>
+                            <button class='btn' [routerLink]="['/books', book.isbn13]">View Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

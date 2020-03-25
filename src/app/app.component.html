@@ -1,18 +1,21 @@
 <nav class='navbar'>
-  <img class='logo' src='../assets/images/book.png' />
+  <img class='nav-logo' src='../assets/images/book.png' />
   <ul class='nav-links'>
-    <li class='nav-item'><a>Home</a></li>
-    <li class='nav-item'><a>Book Database</a></li>
-    <li class='nav-item'><a>My Books</a></li>
-    <li class='nav-item'><a>My Cart</a></li>
-    <li class='nav-item'><a>My Profile</a></li>
-    <li class='nav-item'><a>Logout</a></li>
+    <li class='nav-item' *ngIf='!isLogged()' [routerLink]="['/login']" [routerLinkActive]="'-active'"><a>Login</a></li>
+    <li class='nav-item' *ngIf='!isLogged()' [routerLink]="['/register']" [routerLinkActive]="'-active'"><a>Register</a></li>
+    <li class='nav-item' *ngIf='isLogged() '[routerLink]="['/home']" [routerLinkActive]="'-active'"><a>Home</a></li>
+    <li class='nav-item' [routerLink]="['/books']" [routerLinkActive]="'-active'"><a>Book Database</a></li>
+    <li class='nav-item' *ngIf='isLogged()' [routerLink]="['/users', getId(), 'list']" [routerLinkActive]="'-active'"><a>My Books</a></li>
+    <li class='nav-item' *ngIf='isLogged()' [routerLink]="['/users', getId(), 'profile']" [routerLinkActive]="'-active'"><a>My Profile</a></li>
+    <li class='nav-item' *ngIf='isLogged()' (click)='logout()'><a>Logout</a></li>
   </ul>
 </nav>
 <div class='main-container'>
-  <router-outlet></router-outlet>
-</div>
-<div class='footer'>
-  <img class='logo' src='../assets/images/opus.png' />
-  <a class='copy'>2020</a>
+  <div class='content-wrap'>
+    <router-outlet></router-outlet>
+  </div>
+  <div class='footer'>
+    <img class='logo' src='../assets/images/opus.png' />
+    <a class='copy'>2020</a>
+  </div>
 </div>

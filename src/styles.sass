@@ -1,2 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
-$main-color: #538aa3
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700,800)
+
+$main-color: #56727C
+$main-color2: #415F69
+$background-color: #d2dce9
+$img-path: /assets/images
+
+.body
+    font: 14px "Open Sans", Helvetica, Arial, sans-serif    
+    background: url(#{$img-path}/background-op.png) no-repeat center center fixed
+    background-size: cover
+    background-attachment: fixed    
+  
+.container
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+.container > .card    
+    background-color: $background-color
+    display: flex
+    flex-direction: column
+    > .card-header
+        align-self: center
+    > .card-footer
+        align-self: center
+        margin: .1em .1em .3em .1em
+
+
+.btn
+    color: $main-color2
+    text-transform: uppercase
+    text-decoration: none
+    background: #ffffff
+    padding: .5em
+    border: .15em solid $main-color2
+    display: inline-block
+    transition: all 0.2s ease 0s
+    margin: .2em
+    &:hover
+        color: #ffffff
+        background: $main-color2
+        border-color: $main-color2
+        transition: all 0.2s ease 0s
+
+.input
+    margin: 1em
+    outline: none
+    padding: .3em
+    border: .1em solid $main-color
