@@ -9,6 +9,7 @@ import { BookModule } from './books/book.module';
 import { LoginComponent } from './home/login.component';
 import { UserModule } from './users/user.module';
 import { RegisterComponent } from './home/register.component';
+import { AlertModule } from './alerts/alert.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RegisterComponent } from './home/register.component';
     ]),
     SharedModule,
     BookModule,
-    UserModule
+    UserModule,
+    AlertModule
   ],
   bootstrap: [AppComponent]
 })

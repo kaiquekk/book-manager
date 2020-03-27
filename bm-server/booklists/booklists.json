@@ -26,6 +26,16 @@
         "isbn": 9780596158088,
         "title": "Python Pocket Reference, 4th Edition",
         "image": "https://itbook.store/img/books/9780596158088.png"
+      },
+      {
+        "isbn": 9780596007010,
+        "title": "Java Cookbook, 2nd Edition",
+        "image": "https://itbook.store/img/books/9780596007010.png"
+      },
+      {
+        "isbn": 9781430257820,
+        "title": "Pro ASP.NET Web API Security",
+        "image": "https://itbook.store/img/books/9781430257820.png"
       }
     ]
   }

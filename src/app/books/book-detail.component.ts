@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from './book.service';
 import { AuthService } from '../auth.service';
 import { UserService } from '../users/user.service';
+import { AlertService } from '../alerts/alert.service';
 
 @Component({
   templateUrl: './book-detail.component.html',
@@ -17,7 +18,8 @@ export class BookDetailComponent implements OnInit {
               private router: Router,
               private bookService: BookService,
               private authService: AuthService,
-              private userService: UserService) {
+              private userService: UserService,
+              private alertService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class BookDetailComponent implements OnInit {
 
   addToList() {
     this.userService.addToList(this.authService.currentUserValue["userId"], { "isbn": +this.book["isbn13"], "title": this.book["title"], "image": this.book["image"] }).subscribe({
-      next: data => console.log('Book added to list'),
+      next: () => this.alertService.info('Book Added to List!'),
       error: err => this.errorMessage = err
     });
   }
