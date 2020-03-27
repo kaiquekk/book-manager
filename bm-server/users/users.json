@@ -1,29 +1,20 @@
 [
- {
-  "userId": 311982623,
-  "username": "user1",
-  "password": "42df315912e535f8d6211beb38c90682a990d25c968182e1b6f4f7cbd03e61f2",
-  "firstName": "User",
-  "lastName": "One",
-  "age": 32,
-  "email": "user.one@email.com"
- },
- {
-  "userId": 311982624,
-  "username": "user2",
-  "password": "42df315912e535f8d6211beb38c90682a990d25c968182e1b6f4f7cbd03e61f2",
-  "firstName": "User",
-  "lastName": "Two",
-  "age": 28,
-  "email": "user.two@mail.com"
- },
- {
-  "userId": 311982625,
-  "username": "user3",
-  "password": "42df315912e535f8d6211beb38c90682a990d25c968182e1b6f4f7cbd03e61f2",
-  "firstName": "Abcdefg",
-  "lastName": "Hijkl",  
-  "age": 44,  
-  "email": "abd@mail.com"
- } 
+  {
+    "userId": 311982623,
+    "username": "user1",
+    "password": "42df315912e535f8d6211beb38c90682a990d25c968182e1b6f4f7cbd03e61f2",
+    "firstName": "User",
+    "lastName": "One",
+    "age": 32,
+    "email": "user.one@email.com"
+  },
+  {
+    "userId": 311982671,
+    "username": "usera",
+    "password": "42df315912e535f8d6211beb38c90682a990d25c968182e1b6f4f7cbd03e61f2",
+    "firstName": "User",
+    "lastName": "A",
+    "age": 55,
+    "email": "usera@mail.com"
+  }
 ]

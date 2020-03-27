@@ -37,13 +37,18 @@ app.route('/api/users/register').post((req, response) => {
         response.status(400).send({ message: 'User already exists' });
     }
     else {
-        const currentUsers = data;
-        currentUsers.push({ "userId": generateId(req.body.username), "username": req.body.username,
+        const currentUsers = data,
+            newId = generateId(req.body.username);
+        currentUsers.push({ "userId": newId, "username": req.body.username,
             "password": hash(req.body.password), "firstName": req.body.firstName, 
             "lastName": req.body.lastName, "age": req.body.age, "email": req.body.email })
-        fs.writeFile('./users/users.json', JSON.stringify(currentUsers, null, 1), err => {
+        fs.writeFile('./users/users.json', JSON.stringify(currentUsers, null, 2), err => {
             if (err) response.status(400).send({ message: 'Error writing to db '});
-            response.send(users.get(req.body.username))
+            list.push({ "userId": newId, "books": [] });
+            fs.writeFile('./booklists/booklists.json', JSON.stringify(list, null, 2), err => {
+                if (err) response.status(400).send({ message: 'Error writing to db' });
+                response.status(200).send()
+            })
         })
     }
 })
