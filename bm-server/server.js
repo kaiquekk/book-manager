@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const bodyParser = require('body-parser')
 const data = require('./users/users.json');
+const list = require('./booklists/booklists.json');
 
 const app = express();
 
@@ -61,6 +62,21 @@ app.route('/api/book/:isbn').get((req, response) => {
         if (err) { return console.log(err); }
         response.send(body);
     })
+})
+
+app.route('/api/users/:userId/list').get((req, response) => {
+    const id = req.params['userId'];
+    const lists = new Map();
+    for (l of list) {
+        lists.set(String(l.userId), l);
+    }
+    if (lists.get(id).books !== undefined) {
+        response.send(lists.get(id).books)
+    }
+    else {
+        response.status(400).send({ message: 'Invalid user id' })
+    }
+
 })
 
 function hash(pass) {    

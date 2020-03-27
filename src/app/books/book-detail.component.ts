@@ -37,7 +37,7 @@ export class BookDetailComponent implements OnInit {
   getBook(isbn: number): void {
     this.bookService.getBook(isbn).subscribe({
       next: book => this.book = book,
-      error: err => this. errorMessage = err
+      error: err => this.errorMessage = err
     });
   }
 

@@ -13,6 +13,12 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
+    getList(userId: number): Observable<Object[]> {
+      return this.http.get<Object[]>(`${this.serverUrl}/api/users/${userId}/list`)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
 
     private handleError(err: HttpErrorResponse) {
         let errorMessage = '';

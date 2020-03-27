@@ -1,1 +1,32 @@
-<p>list works!</p>
+<div class='container'>
+    <div class='card'>
+        <div class='card-header'>
+            <h3>User's Books List</h3>
+        </div>
+        <div class='card-body'>
+            <table class='table' *ngIf='books'>
+                <thead>
+                    <tr class='table-row'>
+                        <th class='table-header -empty'></th>
+                        <th class='table-header'>ISBN</th>
+                        <th class='table-header'>Title</th>
+                        <th class='table-header -empty'></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='table-row' *ngFor='let book of books'>
+                        <td class='table-item -image'><img class='cover' [src]='book.image'></td>
+                        <td class='table-item'>
+                            <a [routerLink]="['/books', book.isbn]">{{ book.isbn }}</a>
+                        </td>
+                        <td class='table-item'>{{ book.title }}</td>
+                        <td class='table-item -button'>
+                            <button class='btn'>Remove from List</button>
+                            <button class='btn' [routerLink]="['/books', book.isbn]">View Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

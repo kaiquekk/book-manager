@@ -4,7 +4,7 @@
     <li class='nav-item' *ngIf='!isLogged()' [routerLink]="['/login']" [routerLinkActive]="'-active'"><a>Login</a></li>
     <li class='nav-item' *ngIf='!isLogged()' [routerLink]="['/register']" [routerLinkActive]="'-active'"><a>Register</a></li>
     <li class='nav-item' *ngIf='isLogged() '[routerLink]="['/home']" [routerLinkActive]="'-active'"><a>Home</a></li>
-    <li class='nav-item' [routerLink]="['/books']" [routerLinkActive]="'-active'"><a>Book Database</a></li>
+    <li class='nav-item' [routerLink]="['/books']" [routerLinkActive]="'-active'"><a>Book Search</a></li>
     <li class='nav-item' *ngIf='isLogged()' [routerLink]="['/users', getId(), 'list']" [routerLinkActive]="'-active'"><a>My Books</a></li>
     <li class='nav-item' *ngIf='isLogged()' [routerLink]="['/users', getId(), 'profile']" [routerLinkActive]="'-active'"><a>My Profile</a></li>
     <li class='nav-item' *ngIf='isLogged()' (click)='logout()'><a>Logout</a></li>

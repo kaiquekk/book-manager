@@ -21,4 +21,8 @@ export class ProfileComponent implements OnInit {
     this.user = this.authService.currentUserValue;
   }
 
+  viewBooklist(): void {
+    this.router.navigate(['/users', this.user["userId"],'list'])
+  }
+
 }
