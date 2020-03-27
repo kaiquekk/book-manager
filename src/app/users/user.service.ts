@@ -26,6 +26,13 @@ export class UserService {
       )
     }
 
+    addToList(userId: number, book: Object): Observable<Object> {
+      return this.http.post<Object>(`${this.serverUrl}/api/users/${userId}/list`, book)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
+
     private handleError(err: HttpErrorResponse) {
         let errorMessage = '';
         if (err.error instanceof ErrorEvent) {

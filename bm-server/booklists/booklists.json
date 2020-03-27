@@ -1,12 +1,22 @@
 [
- {
-  "userId": 311982625,
-  "books": [
-   {
-    "isbn": 9780596527747,
-    "title": "Head First JavaScript",
-    "image": "https://itbook.store/img/books/9780596527747.png"
-   }
-  ]
- }
+  {
+    "userId": 311982625,
+    "books": [
+      {
+        "isbn": 9780596527747,
+        "title": "Head First JavaScript",
+        "image": "https://itbook.store/img/books/9780596527747.png"
+      },
+      {
+        "isbn": 9781934356593,
+        "title": "Seven Languages in Seven Weeks",
+        "image": "https://itbook.store/img/books/9781934356593.png"
+      },
+      {
+        "isbn": 9781593279776,
+        "title": "Your Linux Toolbox",
+        "image": "https://itbook.store/img/books/9781593279776.png"
+      }
+    ]
+  }
 ]

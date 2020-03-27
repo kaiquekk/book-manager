@@ -26,7 +26,7 @@
                         <td class='table-item'>{{ book.title }}</td>
                         <td class='table-item'>{{ book.subtitle }}</td>
                         <td class='table-item -button'>
-                            <button class='btn' *ngIf='isLogged()' (click)='addBook()'>Add to List</button>
+                            <button class='btn' *ngIf='isLogged()' (click)='addToList(book)'>Add to List</button>
                             <button class='btn' [routerLink]="['/books', book.isbn13]">View Details</button>
                         </td>
                     </tr>

@@ -79,11 +79,6 @@ app.route('/api/users/:userId/list').get((req, response) => {
 
 })
 
-app.route('/api/users/:userId/list').post((req, response) => {
-    const bookId = req.body['isbn'];
-    // [TODO]
-})
-
 app.route('/api/users/:userId/list/:isbn').delete((req, response) => {
     const id = req.params['userId'],
         isbn = req.params['isbn'],
@@ -94,11 +89,29 @@ app.route('/api/users/:userId/list/:isbn').delete((req, response) => {
             return item['isbn']
         }).indexOf(+isbn);
     list[userIndex].books.splice(bookIndex, 1);
-    fs.writeFile('./booklists/booklists.json', JSON.stringify(list, null, 1), err => {
+    fs.writeFile('./booklists/booklists.json', JSON.stringify(list, null, 2), err => {
         if (err) response.status(400).send({ message: 'Error writing to db '});
         response.status(200).send();
     })
 
+})
+
+app.route('/api/users/:userId/list').post((req, response) => {
+    const id = req.params['userId'],
+        book = req.body,
+        userIndex = list.map(item => {
+            return item['userId']
+        }).indexOf(+id);
+    if (list[userIndex].books.indexOf(book) < 0) {
+        list[userIndex].books.push(book);
+        fs.writeFile('./booklists/booklists.json', JSON.stringify(list, null, 2), err => {
+            if (err) response.status(400).send({ message: 'Error writing to db '});
+            response.status(200).send();
+        })
+    }
+    else {
+        response.status(400).send({ message: 'Book already in list' })
+    }
 })
 
 function hash(pass) {    
