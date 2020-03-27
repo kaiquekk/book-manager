@@ -11,7 +11,6 @@ import { first } from 'rxjs/operators';
 
 export class LoginComponent implements OnInit {
     submitted: boolean = false;
-    loading: boolean = false;
     loginForm: FormGroup;
     errorMessage: string = '';
 
@@ -40,8 +39,6 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.invalid) {
             return;
         }
-        this.loading = true;
-
         this.authService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
@@ -50,7 +47,6 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                     this.errorMessage = error;
-                    this.loading = false;
                 }
             )       
     }

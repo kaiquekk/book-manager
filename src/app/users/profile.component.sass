@@ -1,0 +1,27 @@
+@import '../../styles.sass'
+
+.card
+    width: 50%
+    align-self: center
+.card > .card-body    
+    &.-user
+        align-self: center
+        vertical-align: middle
+    > .user-img
+        text-align: center
+    > .user-img > .avatar
+        width: 8em
+        height: 8em
+        border-radius: 50%
+        vertical-align: middle
+    
+.table
+    border-collapse: collapse
+    margin: 1em 0 1em 0
+.table-row
+    > .table-item, .table-header
+        padding: 1em
+        text-align: center        
+        border: .1em solid black
+    > .table-header
+        background-color: $main-color2

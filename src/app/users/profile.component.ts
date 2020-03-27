@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent implements OnInit {
+  user: Object;
 
   constructor(private authService: AuthService,
               private router: Router) 
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = this.authService.currentUserValue;
   }
 
 }

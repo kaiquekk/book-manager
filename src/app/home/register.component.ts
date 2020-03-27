@@ -11,7 +11,6 @@ import { first } from 'rxjs/operators';
 
 export class RegisterComponent implements OnInit {
     submitted: boolean = false;
-    loading: boolean = false;
     registerForm: FormGroup;
     errorMessage: string = '';
 
@@ -27,7 +26,9 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
+            lastName: ['', Validators.required],            
+            age: ['', Validators.pattern('\\d+')],
+            email: ['', Validators.email],
             username: ['', Validators.required],
             password: ['', Validators.required]
         });
@@ -42,10 +43,8 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-        this.loading = true;
-
         this.authService.register(this.f.firstName.value, this.f.lastName.value, 
-            this.f.username.value, this.f.password.value)
+            this.f.username.value, this.f.password.value, +this.f.age.value, this.f.email.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -53,7 +52,6 @@ export class RegisterComponent implements OnInit {
                 },
                 error => {
                     this.errorMessage = error;
-                    this.loading = false;
                 }
             )       
     }

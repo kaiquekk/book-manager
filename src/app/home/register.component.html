@@ -6,38 +6,49 @@
         <div class='card-body'>
             <form [formGroup]='registerForm' (ngSubmit)='onSubmit()' class='register-form'>
                 <div class='form-group'>
-                    <label for='firstName'>First Name:</label>
+                    <label for='firstName' class='label'>First Name:</label>
                     <input type='text' class='input' formControlName='firstName' [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                     <div *ngIf='submitted && f.firstName.errors' class='req-field'>
                         <div *ngIf='f.firstName.errors.required'>*First Name is required</div>
                     </div>
                 </div>
                 <div class='form-group'>
-                    <label for='lastName'>Last Name:</label>
+                    <label for='lastName' class='label'>Last Name:</label>
                     <input type='text' class='input' formControlName='lastName' [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                     <div *ngIf='submitted && f.lastName.errors' class='req-field'>
                         <div *ngIf='f.lastName.errors.required'>*Last Name is required</div>
                     </div>
                 </div>
                 <div class='form-group'>
-                    <label for='username'>Username:</label>
+                    <label for='age' class='label'>Age:</label>
+                    <input type='age' class='input' formControlName='age' [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
+                    <div *ngIf='submitted && f.age.errors' class='req-field'>
+                        <div *ngIf='f.age.errors.pattern'>*Age must be a number</div>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label for='email' class='label'>Email:</label>                
+                    <input type='email' class='input' formControlName='email' [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf='submitted && f.email.errors' class='req-field'>
+                        <div *ngIf='f.email.errors.email'>*Email must be valid</div>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label for='username' class='label'>Username:</label>                
                     <input type='text' class='input' formControlName='username' [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                     <div *ngIf='submitted && f.username.errors' class='req-field'>
                         <div *ngIf='f.username.errors.required'>*Username is required</div>
                     </div>
                 </div>
                 <div class='form-group'>
-                    <label for='password'>Password:</label>
+                    <label for='password' class='label'>Password:</label>
                     <input type='password' class='input' formControlName='password' [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                     <div *ngIf='submitted && f.password.errors' class='req-field'>
                         <div *ngIf='f.password.errors.required'>*Password is required</div>
                     </div>
                 </div>
                 <div class='form-group -buttons'>
-                    <button class='btn' [disabled]='loading'>
-                        <span *ngIf='loading' class='spinner'></span>
-                        Submit
-                    </button>                    
+                    <button class='btn'>Submit</button>                    
                 </div>
             </form>
         </div>

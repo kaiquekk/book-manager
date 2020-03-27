@@ -29,9 +29,9 @@ export class AuthService {
             );
     }
 
-    register(firstName: string, lastName: string, username: string, password: string) {
+    register(firstName: string, lastName: string, username: string, password: string, age: number, email: string) {
         return this.http.post<any>('http://localhost:8000/api/users/register',
-        { "firstName": firstName, "lastName": lastName, "username": username, "password": password })
+        { "firstName": firstName, "lastName": lastName, "username": username, "password": password, "age": age, "email": email })
             .pipe(
                 tap(user => JSON.stringify(user)),
                 catchError(this.handleError)

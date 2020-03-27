@@ -1,1 +1,39 @@
-<p>profile works!</p>
+<div class='container'>
+    <div class='card'>
+        <div class='card-header'>
+            <h3>User Information</h3>
+        </div>
+        <div class='card-body -user'>
+            <div class='user-img'>
+                <img class='avatar' src='../../assets/images/avatar.png'>  
+            </div>          
+            <div class='user-info'>
+                <table class='table'>
+                    <tr class='table-row'>
+                        <th class='table-header'>Username:</th>
+                        <td class='table-item'>{{ user["username"] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>First Name:</th>
+                        <td class='table-item'>{{ user["firstName"] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>Last Name:</th>
+                        <td class='table-item'>{{ user["lastName"] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>Age:</th>
+                        <td class='table-item'>{{ user["age"] }}</td>
+                    </tr>
+                    <tr class='table-row'>
+                        <th class='table-header'>Email:</th>
+                        <td class='table-item'>{{ user["email"] }}</td>
+                    </tr>
+                </table>
+            </div>            
+        </div>
+        <div class='card-footer'>
+            <button class='btn'>Edit Profile</button>
+        </div>
+    </div>
+</div>
