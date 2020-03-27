@@ -36,4 +36,10 @@ export class ListComponent implements OnInit {
     });
   }
 
+  removeBook(isbn: number): void {
+    this.userService.removeFromList(this.userId, isbn).subscribe({
+      next: data => this.getList(),
+      error: err => this.errorMessage = err
+    });
+  }
 }

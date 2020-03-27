@@ -1,17 +1,12 @@
 [
-    {
-        "userId": 311982625,
-        "books": [
-            {
-                "isbn": 9781430233275,
-                "title": "Pro Java ME Apps",
-                "image": "https://itbook.store/img/books/9781430233275.png"
-            },
-            {
-                "isbn": 9780596527747,
-                "title": "Head First JavaScript",
-                "image": "https://itbook.store/img/books/9780596527747.png"
-            }        
-        ]  
-    }      
+ {
+  "userId": 311982625,
+  "books": [
+   {
+    "isbn": 9780596527747,
+    "title": "Head First JavaScript",
+    "image": "https://itbook.store/img/books/9780596527747.png"
+   }
+  ]
+ }
 ]

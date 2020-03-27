@@ -79,6 +79,28 @@ app.route('/api/users/:userId/list').get((req, response) => {
 
 })
 
+app.route('/api/users/:userId/list').post((req, response) => {
+    const bookId = req.body['isbn'];
+    // [TODO]
+})
+
+app.route('/api/users/:userId/list/:isbn').delete((req, response) => {
+    const id = req.params['userId'],
+        isbn = req.params['isbn'],
+        userIndex = list.map(item => {
+            return item['userId'] 
+        }).indexOf(+id),
+        bookIndex = list[userIndex].books.map(item => {
+            return item['isbn']
+        }).indexOf(+isbn);
+    list[userIndex].books.splice(bookIndex, 1);
+    fs.writeFile('./booklists/booklists.json', JSON.stringify(list, null, 1), err => {
+        if (err) response.status(400).send({ message: 'Error writing to db '});
+        response.status(200).send();
+    })
+
+})
+
 function hash(pass) {    
     const sha = crypto.createHash('sha256');
     return sha.update(pass).digest('hex');

@@ -8,13 +8,19 @@ import { catchError, tap, map } from 'rxjs/operators';
 })
 
 export class UserService {
-    private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     private serverUrl = 'http://localhost:8000';
 
     constructor(private http: HttpClient) { }
 
     getList(userId: number): Observable<Object[]> {
       return this.http.get<Object[]>(`${this.serverUrl}/api/users/${userId}/list`)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
+
+    removeFromList(userId: number, isbn: number): Observable<Object> {
+      return this.http.delete<Object>(`${this.serverUrl}/api/users/${userId}/list/${isbn}`)
       .pipe(
         catchError(this.handleError)
       )

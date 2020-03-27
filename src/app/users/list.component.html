@@ -21,7 +21,7 @@
                         </td>
                         <td class='table-item'>{{ book.title }}</td>
                         <td class='table-item -button'>
-                            <button class='btn'>Remove from List</button>
+                            <button class='btn' (click)='removeBook(book.isbn)'>Remove from List</button>
                             <button class='btn' [routerLink]="['/books', book.isbn]">View Details</button>
                         </td>
                     </tr>
