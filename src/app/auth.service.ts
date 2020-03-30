@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -33,7 +33,6 @@ export class AuthService {
         return this.http.post<any>('http://localhost:8000/api/users/register',
         { "firstName": firstName, "lastName": lastName, "username": username, "password": password, "age": age, "email": email })
             .pipe(
-                tap(user => JSON.stringify(user)),
                 catchError(this.handleError)
             )
     }
@@ -53,13 +52,6 @@ export class AuthService {
     }
 
     private handleError(err: HttpErrorResponse) {
-        let errorMessage = '';
-        if (err.error instanceof ErrorEvent) {
-            errorMessage = `An error occurred: ${err.error.message}`;
-        } else {
-            errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
-        }
-        console.error(errorMessage);
-        return throwError(errorMessage);
+        return throwError(err);
     }
 }

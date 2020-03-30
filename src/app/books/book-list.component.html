@@ -6,7 +6,7 @@
             <span class='focus-input'></span>              
             <button class='btn' (click)='searchBooks()'>Search</button>      
         </div>
-        <div class='card-body' *ngIf='showFilter'>
+        <div class='card-body' *ngIf='showFilter && books.length > 0'>
             <table class='table'>
                 <thead>
                     <tr class='table-row'>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { BookService } from './book.service';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 import { UserService } from '../users/user.service';
+import { AlertService } from '../alerts/alert.service';
 
 @Component({
   templateUrl: './book-list.component.html',
@@ -12,20 +12,23 @@ import { UserService } from '../users/user.service';
 export class BookListComponent {
   books: Object[] = [];
   searchKey: string = '';
-  errorMessage: string = '';
   showFilter: boolean = false;
 
   constructor(private bookService: BookService,
               private authService: AuthService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private alertService: AlertService) { }
 
   searchBooks(): void {
     this.bookService.getBooks(this.searchKey).subscribe({
       next: books => {
         this.books = books["books"];
         this.showFilter = true;
+        if (this.books.length <= 0) {
+          this.alertService.warn(`Could not find any books for ${this.searchKey}. Please refine your filter.`);
+        }
       },
-      error: err => this.errorMessage = err
+      error: err => this.alertService.error(err)
     });
   }
 
@@ -35,8 +38,8 @@ export class BookListComponent {
 
   addToList(book: Object): void {
     this.userService.addToList(this.authService.currentUserValue["userId"], { "isbn": +book["isbn13"], "title": book["title"], "image": book["image"] }).subscribe({
-      next: data => console.log('Book added'),
-      error: err => this.errorMessage = err
+      next: () => this.alertService.success(`${book["title"]} added to your List!`),
+      error: err => this.alertService.error(err)
     });
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './user.service';
+import { AlertService } from '../alerts/alert.service';
 
 @Component({
   templateUrl: './list.component.html',
@@ -9,13 +10,13 @@ import { UserService } from './user.service';
 })
 export class ListComponent implements OnInit {
   books: Object[] | undefined;
-  userId: number;  
-  errorMessage: string = '';
+  userId: number;
 
   constructor(private authService: AuthService,
               private router: Router,
               private userService: UserService,
-              private route: ActivatedRoute) 
+              private route: ActivatedRoute,
+              private alertService: AlertService) 
   {     
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
@@ -32,14 +33,17 @@ export class ListComponent implements OnInit {
   getList(): void {
     this.userService.getList(this.userId).subscribe({
       next: books => this.books = books,
-      error: err => this.errorMessage = err
+      error: err => this.alertService.error(err)
     });
   }
 
-  removeBook(isbn: number): void {
-    this.userService.removeFromList(this.userId, isbn).subscribe({
-      next: data => this.getList(),
-      error: err => this.errorMessage = err
+  removeBook(book: Object): void {
+    this.userService.removeFromList(this.userId, book["isbn"]).subscribe({
+      next: () => {
+        this.getList();
+        this.alertService.success(`${book["title"]} removed from your List!`);
+      },
+      error: err => this.alertService.error(err)
     });
   }
 }

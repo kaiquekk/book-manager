@@ -27,7 +27,7 @@ import { AlertModule } from './alerts/alert.module';
       { path: 'register', component: RegisterComponent},
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: '**', redirectTo: 'login', pathMatch: 'full' }
-    ]),
+    ], { onSameUrlNavigation: 'reload' }),
     SharedModule,
     BookModule,
     UserModule,

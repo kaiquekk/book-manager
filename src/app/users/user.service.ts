@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
+import { AlertService } from '../alerts/alert.service';
 
 @Injectable({
     providedIn: 'root'
@@ -35,12 +36,12 @@ export class UserService {
 
     private handleError(err: HttpErrorResponse) {
         let errorMessage = '';
+        console.log(err)
         if (err.error instanceof ErrorEvent) {
           errorMessage = `An error occurred: ${err.error.message}`;
         } else {
-          errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+          errorMessage = `${err.error.message}`;
         }
-        console.error(errorMessage);
         return throwError(errorMessage);
     }
 }

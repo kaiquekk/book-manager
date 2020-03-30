@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { AlertService } from '../alerts/alert.service';
 
 @Component({
     templateUrl: './register.component.html',
@@ -16,8 +17,9 @@ export class RegisterComponent implements OnInit {
 
     constructor(private router: Router,
                 private authService: AuthService,
-                private formBuilder: FormBuilder
-    ) {
+                private formBuilder: FormBuilder,
+                private alertService: AlertService) 
+    {
         if (this.authService.currentUserValue) {
             this.router.navigate(['/home']);
         }
@@ -47,12 +49,11 @@ export class RegisterComponent implements OnInit {
             this.f.username.value, this.f.password.value, +this.f.age.value, this.f.email.value)
             .pipe(first())
             .subscribe(
-                data => {
+                () => {
+                    this.alertService.info('Successfully created new user. Please login.', true);
                     this.router.navigate(['/login']);
                 },
-                error => {
-                    this.errorMessage = error;
-                }
+                err => this.alertService.error(err.error.message)
             )       
     }
 }

@@ -25,20 +25,20 @@ export class AlertService {
         return this.subject.asObservable().pipe(filter(x => x && x["alertId"] === alertId));
     }
 
-    success(message: string, alertId?: string): void {
-        this.alert({ "message": message, "type": 'success', "alertId": alertId, "keepAfterRouteChange": false })
+    success(message: string, keep?: boolean, alertId?: string): void {
+        this.alert({ "message": message, "type": 'success', "alertId": alertId, "keepAfterRouteChange": keep })
     }
 
-    info(message: string, alertId?: string): void {
-        this.alert({ "message": message, "type": 'info', "alertId": alertId, "keepAfterRouteChange": false })
+    info(message: string, keep?: boolean, alertId?: string): void {
+        this.alert({ "message": message, "type": 'info', "alertId": alertId, "keepAfterRouteChange": keep })
     }
 
-    error(message: string, alertId?: string): void {
-        this.alert({ "message": message, "type": 'error', "alertId": alertId, "keepAfterRouteChange": false })
+    error(message: string, keep?: boolean, alertId?: string): void {
+        this.alert({ "message": message, "type": 'error', "alertId": alertId, "keepAfterRouteChange": keep })
     }
 
-    warn(message: string, alertId?: string): void {
-        this.alert({ "message": message, "type": 'warn', "alertId": alertId, "keepAfterRouteChange": false })
+    warn(message: string, keep?: boolean, alertId?: string): void {
+        this.alert({ "message": message, "type": 'warn', "alertId": alertId, "keepAfterRouteChange": keep })
     }
 
     alert(alert: Object): void {

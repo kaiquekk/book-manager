@@ -41,13 +41,13 @@ export class AlertComponent implements OnInit, OnDestroy {
         }
         switch (alert["type"]) {
             case 'success':
-                return 'alert alert-success';
+                return 'alert -success';
             case 'error':
-                return 'alert alert-danger';
+                return 'alert -error';
             case 'info':
-                return 'alert alert-info';
+                return 'alert -info';
             case 'warn':
-                return 'alert alert-warning';
+                return 'alert -warning';
         }
     }
 }

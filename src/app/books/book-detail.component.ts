@@ -12,7 +12,6 @@ import { AlertService } from '../alerts/alert.service';
 
 export class BookDetailComponent implements OnInit {
   book: Object | undefined;
-  errorMessage: string = '';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -36,15 +35,15 @@ export class BookDetailComponent implements OnInit {
 
   addToList() {
     this.userService.addToList(this.authService.currentUserValue["userId"], { "isbn": +this.book["isbn13"], "title": this.book["title"], "image": this.book["image"] }).subscribe({
-      next: () => this.alertService.info('Book Added to List!'),
-      error: err => this.errorMessage = err
+      next: () => this.alertService.success(`${this.book["title"]} added to your List!`),
+      error: err => this.alertService.error(err)
     });
   }
 
   getBook(isbn: number): void {
     this.bookService.getBook(isbn).subscribe({
       next: book => this.book = book,
-      error: err => this.errorMessage = err
+      error: err => this.alertService.error(err)
     });
   }
 

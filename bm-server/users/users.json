@@ -16,5 +16,23 @@
     "lastName": "A",
     "age": 55,
     "email": "usera@mail.com"
+  },
+  {
+    "userId": 9732498,
+    "username": "john",
+    "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+    "firstName": "Johnatan",
+    "lastName": "Test",
+    "age": 44,
+    "email": "test@mail.com"
+  },
+  {
+    "userId": 316414,
+    "username": "may",
+    "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+    "firstName": "May",
+    "lastName": "Test",
+    "age": 58,
+    "email": "may@test.com"
   }
 ]
