@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { UserService } from './user.service';
 import { HttpErrorResponse, HttpRequest } from '@angular/common/http';
@@ -20,33 +20,34 @@ describe('UserService', () => {
 
   afterEach(() => {
       httpMock.verify();
-  })
-  it('should be created', () => {
-    expect(userService).toBeTruthy();
   });
+
+  it('should create user service', async(() => {
+    expect(userService).toBeTruthy();
+  }));
   
   describe('getList()', () => {
     const lists = [{
       "books": [
         {
-          "isbn": 9780596527747,
-          "title": "Head First JavaScript",
-          "image": "https://itbook.store/img/books/9780596527747.png"
+          "isbn": 1,
+          "title": "b1",
+          "image": "img"
         },
         {
-          "isbn": 9781934356593,
-          "title": "Seven Languages in Seven Weeks",
-          "image": "https://itbook.store/img/books/9781934356593.png"
+          "isbn": 2,
+          "title": "b2",
+          "image": "img"
         }
       ]
     }];
 
     it('should return the user\'s book list', () => {   
-      userService.getList(311982625).subscribe(list => {
+      userService.getList(123).subscribe(list => {
         expect(list[0]["books"].length).toBe(2);
         expect(list).toEqual(lists);
       });
-      const req = httpMock.expectOne('http://localhost:8000/api/users/311982625/list');  
+      const req = httpMock.expectOne('http://localhost:8000/api/users/123/list');  
       expect(req.request.method).toBe('GET');
       req.flush(lists);     
     });
@@ -67,24 +68,48 @@ describe('UserService', () => {
     //   //req.flush('User not found.', { status: 404, statusText: 'Not Found' });
     //  // expect(error.status).toEqual(404);
     // })
+  });
 
-    it('should add the book to the list', () => {
+  describe('addToList()', () => {
+    it('should add the book to the list', async(() => {
       const newBook = {
         "isbn": 123,
-        "title": "Test",
+        "title": "test",
         "image": "img"
-      };
-      const updatedList = Object.assign({}, lists);
-      updatedList[0]["books"].push(newBook);
-      userService.addToList(311982625, newBook).subscribe(response => {
-        expect(response).toEqual(updatedList);      
+      },
+        list = [
+        {
+          "isbn": 100,
+          "title": 'book',
+          "image": 'img'
+        },
+        {
+          "isbn": 123,
+          "title": 'test',
+          "image": 'img'
+        }
+      ]
+      userService.addToList(123, newBook).subscribe(response => {
+        expect(response).toEqual(list);    
       })
       const req = httpMock.expectOne((request: HttpRequest<any>) => {
         return request.method == 'POST'
-        && request.url == 'http://localhost:8000/api/users/311982625/list'
+        && request.url == 'http://localhost:8000/api/users/123/list'
         && JSON.stringify(request.body) == JSON.stringify(newBook)   
       })
-      req.flush(updatedList);        
+      req.flush(list);  
+    }));
   });
-})
+
+  describe('removeFromList()', () => {
+    it('should remove the book from the list', async(() => {
+      userService.removeFromList(123, 1).subscribe(response => {
+        expect(response).toEqual({});
+      })
+      const req = httpMock.expectOne('http://localhost:8000/api/users/123/list/1');  
+      expect(req.request.method).toBe('DELETE');
+      req.flush({});  
+    }));
+  });
+
 });
