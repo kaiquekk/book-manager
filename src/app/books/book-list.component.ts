@@ -10,7 +10,7 @@ import { AlertService } from '../alerts/alert.service';
 })
 
 export class BookListComponent {
-  books: Object[] = [];
+  books: Object[] | undefined;
   searchKey: string = '';
   showFilter: boolean = false;
 
@@ -22,9 +22,11 @@ export class BookListComponent {
   searchBooks(): void {
     this.bookService.getBooks(this.searchKey).subscribe({
       next: books => {
+        console.log(JSON.stringify(books, null, 2))
         this.books = books["books"];
         this.showFilter = true;
         if (this.books.length <= 0) {
+          this.books = undefined;
           this.alertService.warn(`Could not find any books for ${this.searchKey}. Please refine your filter.`);
         }
       },

@@ -51,7 +51,7 @@ describe('ListComponent', () => {
     expect(fixture.componentInstance.books[0]["title"]).toEqual('book');
   }))
 
-  it('should call removebook', async(() => {
+  it('should call removeBook', async(() => {
     const { fixture } = setup();
     mockUserService.removeFromList.and.returnValue(of({}));
     mockUserService.getList.and.returnValue(of([{"isbn": 2, "title": 'book'}]));  
