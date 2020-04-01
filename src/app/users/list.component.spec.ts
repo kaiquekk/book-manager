@@ -4,8 +4,7 @@ import { UserService } from './user.service';
 import { ListComponent } from './list.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute } from '@angular/router';
-import { LoginComponent } from '../home/login.component';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 
 describe('ListComponent', () => {
@@ -13,8 +12,8 @@ describe('ListComponent', () => {
   let mockUserService;
 
   beforeEach(async(() => {
-    mockAuthService = jasmine.createSpyObj(['isLoggedIn']);
-    mockUserService = jasmine.createSpyObj(['getList', 'removeFromList']);
+    mockAuthService = jasmine.createSpyObj('mockAuthService', ['isLoggedIn']);
+    mockUserService = jasmine.createSpyObj('mockUserService', ['getList', 'removeFromList']);
     TestBed.configureTestingModule({
       declarations: [ ListComponent ],
       providers: [
@@ -22,42 +21,49 @@ describe('ListComponent', () => {
         { provide: UserService, useValue: mockUserService },
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 123 } } } }
       ],
-      imports: [RouterTestingModule.withRoutes([
-        { path: 'login', component: LoginComponent }
-      ])],
+      imports: [RouterTestingModule.withRoutes([])],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
 
-  function setup() {
+  function setup(logged: boolean) {
     const fixture = TestBed.createComponent(ListComponent);
-    mockAuthService.isLoggedIn.and.returnValue(false);
     const list = fixture.debugElement.componentInstance;
-    return { fixture, list };
+    const navSpy = spyOn(TestBed.get(Router), 'navigate');
+    mockAuthService.isLoggedIn.and.returnValue(logged);
+    return { fixture, list, navSpy };
   }
 
-  it('should create the list', () => {
-    const { list } = setup();
+  it('should create the list component', () => {
+    const { list } = setup(true);
     expect(list).toBeTruthy();
   });
 
   it('should set the userid and books array correctly', async(() => {
-    const { fixture } = setup(); 
-    mockUserService.getList.and.returnValue(of([{"isbn": 1, "title": 'book'}]));   
+    const { fixture, list } = setup(true);
+    mockUserService.getList.and.returnValue(of([{"isbn": 321, "title": 'book'}]));   
     fixture.detectChanges();
-    expect(fixture.componentInstance.userId).toEqual(123);
-    expect(fixture.componentInstance.books[0]["isbn"]).toEqual(1);
-    expect(fixture.componentInstance.books[0]["title"]).toEqual('book');
+    expect(list.userId).toEqual(123);
+    expect(list.books).toEqual([{"isbn": 321, "title": 'book'}]);
   }))
 
   it('should call removeBook', async(() => {
-    const { fixture } = setup();
+    const { fixture, list } = setup(true);
     mockUserService.removeFromList.and.returnValue(of({}));
-    mockUserService.getList.and.returnValue(of([{"isbn": 2, "title": 'book'}]));  
+    mockUserService.getList.and.returnValue(of([{"isbn": 2, "title": 'book'}])); 
+    list.userId = 123;
+    list.removeBook({"isbn": 1, "title": 'remove'});
     fixture.detectChanges();
-    expect(fixture.componentInstance.books[0]["isbn"]).toEqual(2);
-    expect(fixture.componentInstance.books[0]["title"]).toEqual('book');
-  }))
+    expect(list.books).toEqual([{"isbn": 2, "title": 'book'}]);
+    expect(mockUserService.removeFromList).toHaveBeenCalledWith(123, 1);
+  }));
+
+  it('should redirect if not logged', async(() => {
+    const { fixture, navSpy } = setup(false);
+    mockUserService.getList.and.returnValue(of([{}]))
+    fixture.detectChanges();
+    expect(navSpy).toHaveBeenCalledWith(['/login']);
+  }));
 
 });

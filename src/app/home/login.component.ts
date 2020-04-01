@@ -17,14 +17,12 @@ export class LoginComponent implements OnInit {
     constructor(private router: Router,
                 private authService: AuthService,
                 private formBuilder: FormBuilder,
-                private alertService: AlertService)
-    {
-        if (this.authService.currentUserValue) {
-            this.router.navigate(['/home']);
-        }
-    }
+                private alertService: AlertService) {}
 
     ngOnInit() {
+        if (this.authService.currentUserValue) {
+            this.router.navigate(['/home']);
+        };
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]

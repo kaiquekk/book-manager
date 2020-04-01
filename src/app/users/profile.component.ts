@@ -10,30 +10,27 @@ import { AlertService } from '../alerts/alert.service';
 export class ProfileComponent implements OnInit {
   user: Object;
   userId: number;
-  valid: boolean = true;
+  allowed: boolean = true;
 
   constructor(private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
-              private alertService: AlertService) 
-  {     
+              private alertService: AlertService) {}  
+
+  ngOnInit(): void { 
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
     }
-  }
-  
-
-  ngOnInit(): void {
     this.userId = +this.route.snapshot.paramMap.get('id');
     this.user = this.authService.currentUserValue;
     if (this.userId !== this.user["userId"]) {
-      this.valid = false;
+      this.allowed = false;
       this.alertService.error('You don\'t have permission to access another user profile.');
     }
   }
 
   viewBooklist(): void {
-    this.router.navigate(['/users', this.user["userId"],'list'])
+    this.router.navigate(['/users', this.user["userId"], 'list'])
   }
 
 }

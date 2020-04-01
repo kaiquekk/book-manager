@@ -16,14 +16,12 @@ export class ListComponent implements OnInit {
               private router: Router,
               private userService: UserService,
               private route: ActivatedRoute,
-              private alertService: AlertService) 
-  {     
+              private alertService: AlertService) {}
+
+  ngOnInit(): void {       
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
     }
-  }
-
-  ngOnInit(): void {
     this.userId = +this.route.snapshot.paramMap.get('id');
     if (this.userId) {
       this.getList();

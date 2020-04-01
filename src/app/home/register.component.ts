@@ -18,14 +18,12 @@ export class RegisterComponent implements OnInit {
     constructor(private router: Router,
                 private authService: AuthService,
                 private formBuilder: FormBuilder,
-                private alertService: AlertService) 
-    {
+                private alertService: AlertService) {}
+
+    ngOnInit() {        
         if (this.authService.currentUserValue) {
             this.router.navigate(['/home']);
         }
-    }
-
-    ngOnInit() {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],            

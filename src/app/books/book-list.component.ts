@@ -22,7 +22,6 @@ export class BookListComponent {
   searchBooks(): void {
     this.bookService.getBooks(this.searchKey).subscribe({
       next: books => {
-        console.log(JSON.stringify(books, null, 2))
         this.books = books["books"];
         this.showFilter = true;
         if (this.books.length <= 0) {
