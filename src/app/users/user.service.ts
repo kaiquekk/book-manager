@@ -35,7 +35,6 @@ export class UserService {
 
     private handleError(err: HttpErrorResponse) {
         let errorMessage = '';
-        console.log(err)
         if (err.error instanceof ErrorEvent) {
           errorMessage = `An error occurred: ${err.error.message}`;
         } else {
