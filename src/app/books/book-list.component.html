@@ -27,7 +27,7 @@
                         <td class='table-item'>{{ book.subtitle }}</td>
                         <td class='table-item -button'>
                             <button class='btn' *ngIf='isLogged()' (click)='addToList(book)'>Add to List</button>
-                            <button class='btn' [routerLink]="['/books', book.isbn13]">View Details</button>
+                            <button class='btn' [routerLink]="['/books', book.isbn13, {search: searchKey} ]">View Details</button>
                         </td>
                     </tr>
                 </tbody>

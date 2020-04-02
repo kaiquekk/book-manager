@@ -3,9 +3,7 @@ import { AuthService } from '../auth.service';
 import { ProfileComponent } from './profile.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoginComponent } from '../home/login.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ListComponent } from './list.component';
 
 describe('ProfileComponent', () => {
   let mockAuthService;

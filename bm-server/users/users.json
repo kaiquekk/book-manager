@@ -34,5 +34,14 @@
     "lastName": "Test",
     "age": 58,
     "email": "may@test.com"
+  },
+  {
+    "userId": 9451721,
+    "username": "abcd",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "firstName": "Abcde",
+    "lastName": "Fghij",
+    "age": 28,
+    "email": "abcd@mail.com"
   }
 ]

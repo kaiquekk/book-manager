@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from './book.service';
 import { AuthService } from '../auth.service';
 import { UserService } from '../users/user.service';
 import { AlertService } from '../alerts/alert.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.sass']
 })
 
-export class BookListComponent {
+export class BookListComponent implements OnInit{
   books: Object[] | undefined;
   searchKey: string = '';
   showFilter: boolean = false;
@@ -17,8 +18,16 @@ export class BookListComponent {
   constructor(private bookService: BookService,
               private authService: AuthService,
               private userService: UserService,
-              private alertService: AlertService) { }
+              private alertService: AlertService,
+              private route: ActivatedRoute) { }
 
+  ngOnInit(): void {
+    if (this.route.snapshot.paramMap.get('search')) {
+      this.searchKey = this.route.snapshot.paramMap.get('search');
+      this.searchBooks();
+    }
+  }
+              
   searchBooks(): void {
     this.bookService.getBooks(this.searchKey).subscribe({
       next: books => {

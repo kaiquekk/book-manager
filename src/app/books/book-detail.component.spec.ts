@@ -1,4 +1,4 @@
-import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { AuthService } from '../auth.service';
 import { BookDetailComponent } from './book-detail.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -69,6 +69,13 @@ describe('BookDetailComponent', () => {
     const { detail, navSpy } = setup();
     detail.onBack();
     expect(navSpy).toHaveBeenCalledWith(['/books']);
+  }));
+
+  it('should go back to book list passing the search key', async(() => {
+    const { detail, navSpy } = setup();
+    detail.state = 'test';
+    detail.onBack();
+    expect(navSpy).toHaveBeenCalledWith(['/books', { search: 'test' }]);
   }));
 
 });

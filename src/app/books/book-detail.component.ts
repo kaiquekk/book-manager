@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Data } from '@angular/router';
 import { BookService } from './book.service';
 import { AuthService } from '../auth.service';
 import { UserService } from '../users/user.service';
@@ -12,6 +12,7 @@ import { AlertService } from '../alerts/alert.service';
 
 export class BookDetailComponent implements OnInit {
   book: Object | undefined;
+  state: string = '';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -23,6 +24,9 @@ export class BookDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const param = this.route.snapshot.paramMap.get('isbn');
+    if (this.route.snapshot.paramMap.get('search')) {
+      this.state = this.route.snapshot.paramMap.get('search');
+    }
     if (param) {
       const isbn = +param;
       this.getBook(isbn);
@@ -48,6 +52,11 @@ export class BookDetailComponent implements OnInit {
   }
 
   onBack(): void {
-    this.router.navigate(['/books']);
+    if (this.state) {
+      this.router.navigate(['/books', {search: this.state}]);
+    }
+    else {
+      this.router.navigate(['/books']);
+    }
   }
 }

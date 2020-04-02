@@ -61,6 +61,11 @@
         "isbn": 9780596804374,
         "title": "PHP: The Good Parts",
         "image": "https://itbook.store/img/books/9780596804374.png"
+      },
+      {
+        "isbn": 9781783553310,
+        "title": "Mastering Julia",
+        "image": "https://itbook.store/img/books/9781783553310.png"
       }
     ]
   },
@@ -71,5 +76,25 @@
   {
     "userId": 316414,
     "books": []
+  },
+  {
+    "userId": 9451721,
+    "books": [
+      {
+        "isbn": 9781491957356,
+        "title": "Practical Monitoring",
+        "image": "https://itbook.store/img/books/9781491957356.png"
+      },
+      {
+        "isbn": 9781593279776,
+        "title": "Your Linux Toolbox",
+        "image": "https://itbook.store/img/books/9781593279776.png"
+      },
+      {
+        "isbn": 9781788998369,
+        "title": "Julia 1.0 Programming Cookbook",
+        "image": "https://itbook.store/img/books/9781788998369.png"
+      }
+    ]
   }
 ]

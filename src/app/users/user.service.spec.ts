@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { UserService } from './user.service';
-import { HttpErrorResponse, HttpRequest } from '@angular/common/http';
+import { HttpRequest } from '@angular/common/http';
 
 describe('UserService', () => {
   let userService: UserService;
