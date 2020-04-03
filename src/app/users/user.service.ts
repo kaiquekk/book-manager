@@ -35,7 +35,6 @@ export class UserService {
 
     private handleError(err: HttpErrorResponse) {
         let errorMessage = '';
-        console.log(err)
         if (err.statusText === 'Unknown Error') {
           errorMessage = 'Could not connect to the server.';
         } else {
