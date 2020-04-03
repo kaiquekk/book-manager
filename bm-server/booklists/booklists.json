@@ -66,6 +66,11 @@
         "isbn": 9781783553310,
         "title": "Mastering Julia",
         "image": "https://itbook.store/img/books/9781783553310.png"
+      },
+      {
+        "isbn": 9781788293631,
+        "title": "Learn Node.js by Building 6 Projects",
+        "image": "https://itbook.store/img/books/9781788293631.png"
       }
     ]
   },

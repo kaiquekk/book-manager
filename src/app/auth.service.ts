@@ -52,6 +52,9 @@ export class AuthService {
     }
 
     private handleError(err: HttpErrorResponse) {
+        if (err.statusText === 'Unknown Error') {
+            return throwError('Could not connect to the server.');            
+        }
         return throwError(err);
     }
 }

@@ -28,10 +28,10 @@ export class BookService {
 
     private handleError(err: HttpErrorResponse) {
         let errorMessage = '';
-        if (err.error instanceof ErrorEvent) {
-          errorMessage = `An error occurred: ${err.error.message}`;
+        if (err.statusText === 'Unknown Error') {
+          errorMessage = 'Could not connect to the server.';
         } else if (err.status === 404){
-          errorMessage = `Book not Found.`;
+          errorMessage = 'Book not Found.';
         } else {
             errorMessage = `Server returned error code: ${err.status} and error message: ${err.message}.`;
         }
