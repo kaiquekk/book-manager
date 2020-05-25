@@ -9,7 +9,7 @@ import { AlertService } from '../alerts/alert.service';
   styleUrls: ['./list.component.sass']
 })
 export class ListComponent implements OnInit {
-  books: Object[] | undefined;
+  books: object[] | undefined;
   userId: number;
 
   constructor(private authService: AuthService,
@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
               private route: ActivatedRoute,
               private alertService: AlertService) {}
 
-  ngOnInit(): void {       
+  ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
     }
@@ -35,11 +35,11 @@ export class ListComponent implements OnInit {
     });
   }
 
-  removeBook(book: Object): void {
-    this.userService.removeFromList(this.userId, book["isbn"]).subscribe({
+  removeBook(book: object): void {
+    this.userService.removeFromList(this.userId, book['isbn']).subscribe({
       next: () => {
         this.getList();
-        this.alertService.success(`${book["title"]} removed from your List!`);
+        this.alertService.success(`${book['title']} removed from your List!`);
       },
       error: err => this.alertService.error(err)
     });
