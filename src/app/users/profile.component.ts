@@ -8,7 +8,7 @@ import { AlertService } from '../alerts/alert.service';
   styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent implements OnInit {
-  user: Object;
+  user: object;
   userId: number;
   allowed: boolean = true;
 
