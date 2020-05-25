@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/kaiquekk/book-manager.git'
+                git branch: env.BRANCH_NAME, url: 'https://github.com/kaiquekk/book-manager.git'
             }
         }
         stage('install deps') {
