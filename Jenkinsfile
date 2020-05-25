@@ -1,16 +1,6 @@
 pipeline {
-    agent { label 'master' }
-    stages{
-        stage('checkout') {
-            steps {
-                dir('main') {
-                    checkout scm
-                }
-                dir('tests') {
-                    checkout resolveScm(source: git('https://github.com/kaiquekk/book-manager.git'), targets: [BRANCH_NAME,'master']
-                }
-            }
-        }
+    agent any
+    stages{        
         stage('install deps') {
             steps {
                 bat 'npm install'
